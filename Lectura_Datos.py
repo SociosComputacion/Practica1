@@ -10,10 +10,10 @@ f.close()
 pattern = re.compile('<li>(\d)</li>\s*<li>(\d)</li>\s*<li>(\d)</li>\s*<li>(\d)</li>\s*<li>(\d)</li>')
 premiado = pattern.findall(data)
 
-#print(premiado)
+pattern = re.compile('\d+/\d+/\d+')
+fechas = pattern.findall(data)
 
 valores = str(premiado)
-
 valores_ok = valores.split("'")
 
 val1 = int(valores_ok[1])
@@ -21,7 +21,6 @@ val2 = int(valores_ok[3])
 val3 = int(valores_ok[5])
 val4 = int(valores_ok[7])
 val5 = int(valores_ok[9])
-
 
 print val1, val2, val3, val4, val5
 

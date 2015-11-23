@@ -1,11 +1,14 @@
 import re
 import urllib
 
+#Include the Beebotte SDK for Python
+from beebotte import *
+
+bclient = BBT("2210bd88db2d50631a51f5ef9d10a28f", "bd2933699aec6b063d7f9efbd2b8843aa6a837e9b6ba31fb9dc9047dde498de7")
+
 f = urllib.urlopen("http://www.resultados11.es/")
 data = f.read()
 f.close()
-
-#print(data)
 
 pattern = re.compile('<li>(\d)</li>\s*<li>(\d)</li>\s*<li>(\d)</li>\s*<li>(\d)</li>\s*<li>(\d)</li>')
 premiado = pattern.findall(data)
@@ -15,6 +18,8 @@ fechas = pattern.findall(data)
 
 valores = str(premiado)
 valores_ok = valores.split("'")
+
+bclient.write('dev', 'res1', valores_ok)
 
 val1 = int(valores_ok[1])
 val2 = int(valores_ok[3])
